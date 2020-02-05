@@ -1,14 +1,24 @@
 import React from 'react'
 
 // * Componentes
-import { Grid, TextField, Button } from '@material-ui/core'
+import {
+  Box,
+  Grid,
+  TextField,
+  Button,
+  CircularProgress
+} from '@material-ui/core'
 import { DatePicker } from '@material-ui/pickers'
 
+import Results from './Results'
+
 function Search() {
+  const [isLoading, setIsLoading] = React.useState(false)
   const [startDate, setStartDate] = React.useState(null)
   const [returnDate, setReturnDate] = React.useState(null)
   const [originPlace, setOriginPlace] = React.useState(null)
   const [destinationPlace, setDestinationPlace] = React.useState(null)
+  const [isSearched, setIsSearched] = React.useState(false)
 
   const handleStartDate = (date) => {
     setStartDate(date)
@@ -26,6 +36,22 @@ function Search() {
     console.log(
       `Origem: ${originPlace} \n Destino: ${destinationPlace} \n Ida: ${startDate} \n Volta: ${returnDate}`
     )
+  }
+
+  const Result = () => {
+    if (isSearched) {
+      return <Results />
+    } else {
+      return <React.Fragment />
+    }
+  }
+
+  const Load = () => {
+    if (isLoading) {
+      return <CircularProgress />
+    } else {
+      return <React.Fragment />
+    }
   }
 
   return (
@@ -108,11 +134,22 @@ function Search() {
             variant='contained'
             color='primary'
             onClick={(event) => {
-              handleSearch(event)
+              setIsLoading(true)
+              setTimeout(function() {
+                setIsLoading(false)
+                handleSearch(event)
+                setIsSearched(true)
+              }, 3000)
             }}>
             Buscar minha viagem
           </Button>
         </Grid>
+      </Grid>
+      <Grid container direction='column' justify='center' alignItems='center'>
+        <Box margin='4rem'>
+          <Load />
+          <Result />
+        </Box>
       </Grid>
     </Grid>
   )

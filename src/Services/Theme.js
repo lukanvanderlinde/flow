@@ -19,7 +19,7 @@ const Theme = createMuiTheme({
       main: '#ea202c'
     },
     background: {
-      default: '#FBFBFD'
+      default: '#FFFFFF'
     }
   },
   typography: {
@@ -106,7 +106,7 @@ const Theme = createMuiTheme({
     button: {
       fontFamily: ['Montserrat-Bold', 'Arial', 'Helvetica', 'sans- serif'],
       fontSize: '1rem',
-      color: '#222222',
+      color: '#ffffff',
       textTransform: 'uppercase',
       textDecoration: 'none',
       src: `url(${MontserratBold}) format('ttf')`

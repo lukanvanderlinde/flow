@@ -19,7 +19,7 @@ function Header() {
 
       <Box paddingBottom='20px'>
         <Typography variant='h3'>
-          Uma viagem inteligênte pode ser até 30% mais rápida!
+          Já imaginou uma viagem até 30% mais rápida?
         </Typography>
       </Box>
     </Grid>
