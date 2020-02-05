@@ -17,6 +17,9 @@ const Theme = createMuiTheme({
     },
     error: {
       main: '#ea202c'
+    },
+    background: {
+      default: '#FBFBFD'
     }
   },
   typography: {
@@ -115,6 +118,13 @@ const Theme = createMuiTheme({
       textTransform: 'uppercase',
       textDecoration: 'none',
       src: `url(${LatoRegular}) format('ttf')`
+    }
+  },
+  overrides: {
+    MuiButton: {
+      contained: {
+        boxShadow: '0px'
+      }
     }
   }
 })

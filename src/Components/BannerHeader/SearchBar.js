@@ -15,7 +15,8 @@ function Search() {
     setReturnDate(date)
   }
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
+      {/* INPUTS */}
       <Grid item xs={12}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
@@ -31,7 +32,6 @@ function Search() {
                   placeholder='De onde vamos partir?'
                   type='search'
                   variant='outlined'
-                  fullWidth
                 />
               </Grid>
               <Grid item>
@@ -74,10 +74,13 @@ function Search() {
         </Grid>
       </Grid>
 
+      {/* Buttom */}
       <Grid item xs={12}>
-        <Button variant='contained' color='primary'>
-          Buscar minha viagem
-        </Button>
+        <Grid container justify='center' alignItems='center' spacing={2}>
+          <Button variant='contained' color='primary'>
+            Buscar minha viagem
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   )
