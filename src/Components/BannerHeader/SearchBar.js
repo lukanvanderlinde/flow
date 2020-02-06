@@ -88,88 +88,73 @@ function Search() {
       {/* INPUTS */}
       <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item sm={6}>
-            <Grid
-              container
-              direction='column'
-              justify='center'
-              alignItems='flex-end'
-              spacing={2}>
-              <Grid item>
-                <Autocomplete
-                  options={Cidades}
-                  getOptionLabel={(option) => option.Nome}
-                  style={{ width: 300 }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Origem'
-                      placeholder='De onde vamos partir?'
-                      variant='outlined'
-                      fullWidth
-                      onChange={(event) => {
-                        handleOriginPlace(event.target.value)
-                      }}
-                    />
-                  )}
+          <Grid item xs={6}>
+            <Autocomplete
+              options={Cidades}
+              getOptionLabel={(option) => option.Nome}
+              fullWidth
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label='Origem'
+                  placeholder='De onde vamos partir?'
+                  variant='outlined'
+                  fullWidth
+                  onChange={(event) => {
+                    handleOriginPlace(event.target.value)
+                  }}
                 />
-              </Grid>
-              <Grid item>
-                <DatePicker
-                  style={{ width: 300 }}
-                  format='DD/MM/YYYY'
-                  label='Ida'
-                  inputVariant='outlined'
-                  value={startDate}
-                  onChange={handleStartDate}
-                  animateYearScrolling
-                  minDate={new Date()}
-                />
-              </Grid>
-            </Grid>
+              )}
+            />
           </Grid>
-          <Grid item sm={6}>
-            <Grid
-              container
-              direction='column'
-              justify='center'
-              alignItems='flex-start'
-              spacing={2}>
-              <Grid item>
-                <Autocomplete
-                  options={Cidades}
-                  getOptionLabel={(option) => option.Nome}
-                  style={{ width: 300 }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label='Destino'
-                      placeholder='Para onde você vai?'
-                      variant='outlined'
-                      fullWidth
-                      onChange={(event) => {
-                        handleDestinationPlace(event.target.value)
-                      }}
-                    />
-                  )}
+
+          <Grid item xs={6}>
+            <Autocomplete
+              options={Cidades}
+              getOptionLabel={(option) => option.Nome}
+              fullWidth
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label='Destino'
+                  placeholder='Para onde você vai?'
+                  variant='outlined'
+                  fullWidth
+                  onChange={(event) => {
+                    handleDestinationPlace(event.target.value)
+                  }}
                 />
-              </Grid>
-              <Grid item>
-                <DatePicker
-                  style={{ width: 300 }}
-                  format='DD/MM/YYYY'
-                  label='Volta (opcional)'
-                  inputVariant='outlined'
-                  value={returnDate}
-                  onChange={handleReturnDate}
-                  animateYearScrolling
-                  minDate={startDate}
-                  minDateMessage={
-                    'Data de volta não pode ser antes do que a de ida :)'
-                  }
-                />
-              </Grid>
-            </Grid>
+              )}
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+            <DatePicker
+              fullWidth
+              format='DD/MM/YYYY'
+              label='Ida'
+              inputVariant='outlined'
+              value={startDate}
+              onChange={handleStartDate}
+              animateYearScrolling
+              minDate={new Date()}
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+            <DatePicker
+              fullWidth
+              format='DD/MM/YYYY'
+              label='Volta (opcional)'
+              inputVariant='outlined'
+              value={returnDate}
+              onChange={handleReturnDate}
+              animateYearScrolling
+              minDate={startDate}
+              minDateMessage={
+                'Data de volta não pode ser antes do que a de ida :)'
+              }
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -186,7 +171,7 @@ function Search() {
                 setIsLoading(false)
                 handleSearch(event)
                 setIsSearched(true)
-              }, 3000)
+              }, 2000)
             }}>
             Buscar minha viagem
           </Button>
