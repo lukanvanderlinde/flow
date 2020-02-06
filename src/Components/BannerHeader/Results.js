@@ -1,5 +1,7 @@
 import React from 'react'
 
+import FirebaseApp from 'Services/FirebaseApp'
+
 import 'Assets/Images/Sad.css'
 import Sad from 'Assets/Images/Sad.svg'
 import 'Assets/Images/Happy.css'
@@ -11,6 +13,19 @@ import { Grid, Button, TextField, Typography } from '@material-ui/core'
 function Results() {
   const [userPhone, setUserPhone] = React.useState(false)
   const [isSubimitted, setIsSubimitted] = React.useState(false)
+
+  const handleAvisa = () => {
+    setIsSubimitted(true)
+    try {
+      FirebaseApp.database()
+        .ref('users/' + userPhone)
+        .set({
+          phone: userPhone.toString()
+        })
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   const Image = () => {
     if (isSubimitted) {
@@ -29,6 +44,14 @@ function Results() {
           Poxa, não encontramos nenhuma viagem...
         </Typography>
       )
+    }
+  }
+
+  const PhoneInput = () => {
+    if (isSubimitted) {
+      return <React.Fragment />
+    } else {
+      return <Grid container spacing={2}></Grid>
     }
   }
 
@@ -63,10 +86,11 @@ function Results() {
               <Title />
               <Subtitle />
             </Grid>
+
             <Grid item sm={12}>
               <TextField
                 label='Telefone'
-                placeholder='Qual é o seu whats?'
+                placeholder='(DDD) 9 0000-0000'
                 type='search'
                 variant='outlined'
                 fullWidth
@@ -81,7 +105,7 @@ function Results() {
                 variant='contained'
                 color='primary'
                 onClick={() => {
-                  setIsSubimitted(true)
+                  handleAvisa()
                 }}>
                 ME AVISA!
               </Button>

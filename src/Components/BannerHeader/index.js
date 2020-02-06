@@ -12,11 +12,11 @@ function BannerHeader() {
     <Grid item xs={12}>
       <Container>
         <Grid container justify='center' alignItems='center' spacing={4}>
-          <Grid item xs={12}>
+          <Grid item sm={12}>
             <LogoHeader />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item sm={12}>
             <SearchBar />
           </Grid>
         </Grid>

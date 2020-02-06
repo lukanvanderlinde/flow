@@ -1,5 +1,7 @@
 import React from 'react'
 
+import FirebaseApp from 'Services/FirebaseApp'
+
 // * Componentes
 import {
   Box,
@@ -9,8 +11,10 @@ import {
   CircularProgress
 } from '@material-ui/core'
 import { DatePicker } from '@material-ui/pickers'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
 import Results from './Results'
+import Cidades from './Cidades'
 
 function Search() {
   const [isLoading, setIsLoading] = React.useState(false)
@@ -32,10 +36,35 @@ function Search() {
   const handleDestinationPlace = (place) => {
     setDestinationPlace(place)
   }
-  const handleSearch = (event) => {
-    console.log(
-      `Origem: ${originPlace} \n Destino: ${destinationPlace} \n Ida: ${startDate} \n Volta: ${returnDate}`
+  const handleSearch = () => {
+    let payload = {}
+
+    const random = Math.floor(
+      Math.random() * 100 * Math.random() * 1000 * Math.random() * 1000
     )
+
+    if (returnDate != null) {
+      payload = {
+        origem: originPlace,
+        destino: destinationPlace,
+        ida: startDate.toString(),
+        volta: returnDate.toString()
+      }
+    } else {
+      payload = {
+        origem: originPlace,
+        destino: destinationPlace,
+        ida: startDate.toString()
+      }
+    }
+
+    try {
+      FirebaseApp.database()
+        .ref('buscas/' + random)
+        .set(payload)
+    } catch (error) {
+      alert(error)
+    }
   }
 
   const Result = () => {
@@ -59,7 +88,7 @@ function Search() {
       {/* INPUTS */}
       <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item sm={6}>
             <Grid
               container
               direction='column'
@@ -67,18 +96,27 @@ function Search() {
               alignItems='flex-end'
               spacing={2}>
               <Grid item>
-                <TextField
-                  label='Origem'
-                  placeholder='De onde vamos partir?'
-                  type='search'
-                  variant='outlined'
-                  onChange={(event) => {
-                    handleOriginPlace(event.target.value)
-                  }}
+                <Autocomplete
+                  options={Cidades}
+                  getOptionLabel={(option) => option.Nome}
+                  style={{ width: 300 }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label='Origem'
+                      placeholder='De onde vamos partir?'
+                      variant='outlined'
+                      fullWidth
+                      onChange={(event) => {
+                        handleOriginPlace(event.target.value)
+                      }}
+                    />
+                  )}
                 />
               </Grid>
               <Grid item>
                 <DatePicker
+                  style={{ width: 300 }}
                   format='DD/MM/YYYY'
                   label='Ida'
                   inputVariant='outlined'
@@ -90,7 +128,7 @@ function Search() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={6}>
             <Grid
               container
               direction='column'
@@ -98,18 +136,27 @@ function Search() {
               alignItems='flex-start'
               spacing={2}>
               <Grid item>
-                <TextField
-                  label='Destino'
-                  placeholder='Para onde você vai?'
-                  type='search'
-                  variant='outlined'
-                  onChange={(event) => {
-                    handleDestinationPlace(event.target.value)
-                  }}
+                <Autocomplete
+                  options={Cidades}
+                  getOptionLabel={(option) => option.Nome}
+                  style={{ width: 300 }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label='Destino'
+                      placeholder='Para onde você vai?'
+                      variant='outlined'
+                      fullWidth
+                      onChange={(event) => {
+                        handleDestinationPlace(event.target.value)
+                      }}
+                    />
+                  )}
                 />
               </Grid>
               <Grid item>
                 <DatePicker
+                  style={{ width: 300 }}
                   format='DD/MM/YYYY'
                   label='Volta (opcional)'
                   inputVariant='outlined'

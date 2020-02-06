@@ -18,7 +18,7 @@ function Header() {
       </Box>
 
       <Box paddingBottom='20px'>
-        <Typography variant='h3'>
+        <Typography variant='h3' align='center'>
           Já imaginou uma viagem até 30% mais rápida?
         </Typography>
       </Box>
