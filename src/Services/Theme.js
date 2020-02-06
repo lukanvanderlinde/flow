@@ -17,9 +17,6 @@ const Theme = createMuiTheme({
     },
     error: {
       main: '#ea202c'
-    },
-    background: {
-      default: '#FFFFFF'
     }
   },
   typography: {

@@ -13,7 +13,6 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
 // * Theme
 import Theme from 'Services/Theme'
-import { CssBaseline } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/styles'
 
 import LandingPage from 'Views/LandingPage'
@@ -22,7 +21,6 @@ import NotFound from 'Views/NotFound'
 const Flow = () => {
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
-      <CssBaseline />
       <ThemeProvider theme={Theme}>
         <AuthProvider>
           <Router>
