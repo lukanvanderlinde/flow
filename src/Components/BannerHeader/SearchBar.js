@@ -92,7 +92,6 @@ function Search() {
             <Autocomplete
               options={Cidades}
               getOptionLabel={(option) => option.Nome}
-              fullWidth
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -112,7 +111,6 @@ function Search() {
             <Autocomplete
               options={Cidades}
               getOptionLabel={(option) => option.Nome}
-              fullWidth
               renderInput={(params) => (
                 <TextField
                   {...params}

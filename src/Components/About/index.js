@@ -22,7 +22,7 @@ function NavBar() {
                 alignItems='center'
                 spacing={2}>
                 <Grid item>
-                  <img class='PDV' src={PDV} alt=' ' />
+                  <img className='PDV' src={PDV} alt=' ' />
                 </Grid>
                 <Grid item>
                   <Box marginBottom='2rem' id='about'>
@@ -36,7 +36,7 @@ function NavBar() {
             <Grid item sm={6}>
               <Grid container direction='column' justify='center' spacing={2}>
                 <Grid item>
-                  <img class='Boneco' src={Boneco} alt=' ' />
+                  <img className='Boneco' src={Boneco} alt=' ' />
                 </Grid>
               </Grid>
             </Grid>
