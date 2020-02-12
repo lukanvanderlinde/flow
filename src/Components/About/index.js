@@ -25,7 +25,7 @@ function NavBar() {
                   <img class='PDV' src={PDV} alt=' ' />
                 </Grid>
                 <Grid item>
-                  <Box marginBottom='2rem'>
+                  <Box marginBottom='2rem' id='about'>
                     <Button variant='contained' color='primary' href='#search'>
                       Buscar minha viagem
                     </Button>

@@ -8,13 +8,17 @@ function NavBar() {
     <Grid item xs={12}>
       <Grid container justify='center' spacing={2}>
         <Grid item>
-          <Button color='secondary'>BUSCAR</Button>
+          <Button color='secondary' href='#search'>
+            BUSCAR
+          </Button>
         </Grid>
         {/* <Grid item>
           <Button color='secondary'>VIAGENS</Button>
         </Grid> */}
         <Grid item>
-          <Button color='secondary'>SOBRE</Button>
+          <Button color='secondary' href='#about'>
+            SOBRE
+          </Button>
         </Grid>
         {/* <Grid item>
           <Button color='secondary'>ENTRAR</Button>
