@@ -10,7 +10,7 @@ import SearchBar from './SearchBar'
 function BannerHeader() {
   return (
     <Grid item xs={12}>
-      <Container>
+      <Container id='search'>
         <Grid container justify='center' alignItems='center' spacing={4}>
           <Grid item sm={12}>
             <LogoHeader />

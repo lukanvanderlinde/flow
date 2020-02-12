@@ -26,7 +26,7 @@ function NavBar() {
                 </Grid>
                 <Grid item>
                   <Box marginBottom='2rem'>
-                    <Button variant='contained' color='primary'>
+                    <Button variant='contained' color='primary' href='#search'>
                       Buscar minha viagem
                     </Button>
                   </Box>
