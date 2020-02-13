@@ -18,11 +18,10 @@ import Cidades from './Cidades'
 
 function Search() {
   const [isLoading, setIsLoading] = React.useState(false)
+  const [isSearched, setIsSearched] = React.useState(false)
+
   const [startDate, setStartDate] = React.useState(null)
   const [returnDate, setReturnDate] = React.useState(null)
-  const [originPlace, setOriginPlace] = React.useState(null)
-  const [destinationPlace, setDestinationPlace] = React.useState(null)
-  const [isSearched, setIsSearched] = React.useState(false)
 
   const handleStartDate = (date) => {
     setStartDate(date)
@@ -30,44 +29,8 @@ function Search() {
   const handleReturnDate = (date) => {
     setReturnDate(date)
   }
-  const handleOriginPlace = (place) => {
-    setOriginPlace(place)
-  }
-  const handleDestinationPlace = (place) => {
-    setDestinationPlace(place)
-  }
-  const handleSearch = () => {
-    let payload = {}
 
-    const random = Math.floor(
-      Math.random() * 100 * Math.random() * 1000 * Math.random() * 1000
-    )
-
-    if (returnDate != null) {
-      payload = {
-        origem: originPlace,
-        destino: destinationPlace,
-        ida: startDate.toString(),
-        volta: returnDate.toString()
-      }
-    } else {
-      payload = {
-        origem: originPlace,
-        destino: destinationPlace,
-        ida: startDate.toString()
-      }
-    }
-
-    try {
-      FirebaseApp.database()
-        .ref('buscas/' + random)
-        .set(payload)
-    } catch (error) {
-      alert(error)
-    }
-  }
-
-  const Result = () => {
+  const SearchResult = () => {
     if (isSearched) {
       return <Results />
     } else {
@@ -75,7 +38,7 @@ function Search() {
     }
   }
 
-  const Load = () => {
+  const LoadSpinner = () => {
     if (isLoading) {
       return <CircularProgress />
     } else {
@@ -83,105 +46,132 @@ function Search() {
     }
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const { origem, destino, ida, volta } = event.target.elements
+
+    const payload = {
+      origem: origem.value,
+      destino: destino.value,
+      ide: ida.value,
+      volta: volta.value
+    }
+
+    setIsLoading(true)
+    setTimeout(function() {
+      setIsLoading(false)
+
+      try {
+        FirebaseApp.database()
+          .ref('search')
+          .push(payload)
+      } catch (error) {
+        alert(error)
+      }
+
+      setIsSearched(true)
+    }, 2000)
+  }
+
   return (
-    <Grid container spacing={4}>
-      {/* INPUTS */}
-      <Grid item xs={12}>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Autocomplete
-              options={Cidades}
-              getOptionLabel={(option) => option.Nome}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label='Origem'
-                  placeholder='De onde vamos partir?'
-                  variant='outlined'
-                  fullWidth
-                  onChange={(event) => {
-                    handleOriginPlace(event.target.value)
-                  }}
-                />
-              )}
-            />
-          </Grid>
+    <form onSubmit={handleSubmit}>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Autocomplete
+            options={Cidades}
+            getOptionLabel={(option) => option.Nome}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Origem'
+                name='origem'
+                id='origem'
+                type='text'
+                placeholder='De onde vamos partir?'
+                variant='outlined'
+                fullWidth
+                required
+              />
+            )}
+          />
+        </Grid>
 
-          <Grid item xs={6}>
-            <Autocomplete
-              options={Cidades}
-              getOptionLabel={(option) => option.Nome}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label='Destino'
-                  placeholder='Para onde você vai?'
-                  variant='outlined'
-                  fullWidth
-                  onChange={(event) => {
-                    handleDestinationPlace(event.target.value)
-                  }}
-                />
-              )}
-            />
-          </Grid>
+        <Grid item xs={6}>
+          <Autocomplete
+            options={Cidades}
+            getOptionLabel={(option) => option.Nome}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Destino'
+                name='destino'
+                id='destino'
+                type='text'
+                placeholder='Para onde você vai?'
+                variant='outlined'
+                fullWidth
+                required
+              />
+            )}
+          />
+        </Grid>
 
-          <Grid item xs={6}>
-            <DatePicker
-              fullWidth
-              format='DD/MM/YYYY'
-              label='Ida'
-              inputVariant='outlined'
-              value={startDate}
-              onChange={handleStartDate}
-              animateYearScrolling
-              minDate={new Date()}
-            />
-          </Grid>
+        <Grid item xs={6}>
+          <DatePicker
+            fullWidth
+            // DATEPICKER SER NECESSÁRIO
+            format='DD/MM/YYYY'
+            label='Ida'
+            name='ida'
+            id='ida'
+            inputVariant='outlined'
+            value={startDate}
+            onChange={handleStartDate}
+            animateYearScrolling
+            minDate={new Date()}
+          />
+        </Grid>
 
-          <Grid item xs={6}>
-            <DatePicker
-              fullWidth
-              format='DD/MM/YYYY'
-              label='Volta (opcional)'
-              inputVariant='outlined'
-              value={returnDate}
-              onChange={handleReturnDate}
-              animateYearScrolling
-              minDate={startDate}
-              minDateMessage={
-                'Data de volta não pode ser antes do que a de ida :)'
-              }
-            />
-          </Grid>
+        <Grid item xs={6}>
+          <DatePicker
+            fullWidth
+            format='DD/MM/YYYY'
+            label='Volta (opcional)'
+            name='volta'
+            id='volta'
+            inputVariant='outlined'
+            value={returnDate}
+            onChange={handleReturnDate}
+            animateYearScrolling
+            minDate={startDate}
+            minDateMessage={
+              'Data de volta não pode ser antes do que a de ida :)'
+            }
+          />
         </Grid>
       </Grid>
 
-      {/* Buttom */}
-      <Grid item xs={12}>
-        <Grid container justify='center' alignItems='center' spacing={2}>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={(event) => {
-              setIsLoading(true)
-              setTimeout(function() {
-                setIsLoading(false)
-                handleSearch(event)
-                setIsSearched(true)
-              }, 2000)
-            }}>
-            Buscar minha viagem
-          </Button>
+      <Grid container spacing={4}>
+        {/* INPUTS */}
+        <Grid item xs={12}></Grid>
+
+        {/* Buttom */}
+        <Grid item xs={12}>
+          <Grid container justify='center' alignItems='center' spacing={2}>
+            <Button variant='contained' color='primary' type='submit'>
+              Buscar minha viagem
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid container direction='column' justify='center' alignItems='center'>
+          <Box margin='4rem'>
+            <LoadSpinner />
+            <SearchResult />
+          </Box>
         </Grid>
       </Grid>
-      <Grid container direction='column' justify='center' alignItems='center'>
-        <Box margin='4rem'>
-          <Load />
-          <Result />
-        </Box>
-      </Grid>
-    </Grid>
+    </form>
   )
 }
 
