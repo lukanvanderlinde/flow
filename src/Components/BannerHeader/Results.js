@@ -2,8 +2,8 @@ import React from 'react'
 
 import FirebaseApp from 'Services/FirebaseApp'
 
-import 'Assets/Images/Sad.css'
-import Sad from 'Assets/Images/Sad.svg'
+import SadPerson from 'Assets/Components/SadPerson'
+
 import 'Assets/Images/Happy.css'
 import Happy from 'Assets/Images/Happy.svg'
 
@@ -31,7 +31,7 @@ function Results() {
     if (isSubimitted) {
       return <img src={Happy} className='Happy' alt=' ' />
     } else {
-      return <img src={Sad} className='Sad' alt=' ' />
+      return <SadPerson />
     }
   }
 

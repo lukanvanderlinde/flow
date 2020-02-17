@@ -1,6 +1,5 @@
 import React from 'react'
-import 'Assets/Images/Logo.css'
-import LogoFlow from 'Assets/Images/LogoFlow.svg'
+import LogoFlow from 'Assets/Components/LogoFlow'
 
 // * Componentes
 import { Box, Grid, Typography } from '@material-ui/core'
@@ -14,7 +13,7 @@ function Header() {
       alignItems='center'
       spacing={2}>
       <Box paddingTop='40px'>
-        <img src={LogoFlow} className='App-logo' alt='Vai de Flow' />
+        <LogoFlow />
       </Box>
 
       <Box paddingBottom='20px'>
