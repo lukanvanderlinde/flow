@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Paper, Grid, Button, Box, Typography } from '@material-ui/core'
+import { Grid, Button, Box, Typography } from '@material-ui/core'
 
 import LogoFlow from 'Assets/Components/LogoFlow'
 import OpsPerson from 'Assets/Components/OpsPerson'

@@ -1,22 +1,26 @@
 import React from 'react'
 
 // * Componentes
-import { Grid } from '@material-ui/core'
+import { Box, Container } from '@material-ui/core'
 
 // * CustomComp
 import NavBar from 'Components/NavBar'
 import BannerHeader from 'Components/BannerHeader'
+import PropostaValor from 'Components/PropostaValor'
 import About from 'Components/About'
 
 function LandingPage() {
   return (
-    <Grid container spacing={4}>
+    <Container maxWidth='xl'>
       <NavBar />
-
       <BannerHeader />
-
-      <About />
-    </Grid>
+      <Box marginBottom='3rem'>
+        <PropostaValor />
+      </Box>
+      <Box paddingBottom='3rem'>
+        <About />
+      </Box>
+    </Container>
   )
 }
 
