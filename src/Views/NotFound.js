@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Grid, Button, Box, Typography } from '@material-ui/core'
+import { Paper, Grid, Button, Box, Typography } from '@material-ui/core'
 
 import LogoFlow from 'Assets/Components/LogoFlow'
 import OpsPerson from 'Assets/Components/OpsPerson'
 
 function LandingPage() {
   return (
-    <Box marginTop='3rem'>
+    <Box marginTop='1rem' padding='1rem'>
       <Grid
         container
         direction='row'
