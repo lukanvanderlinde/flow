@@ -2,10 +2,9 @@ import React from 'react'
 
 import FirebaseApp from 'Services/FirebaseApp'
 
-import SadPerson from 'Assets/Components/SadPerson'
-
-import 'Assets/Images/Happy.css'
+import Sad from 'Assets/Images/Sad.svg'
 import Happy from 'Assets/Images/Happy.svg'
+import ImageHolder from 'Components/ImageHolder'
 
 // * Componentes
 import { Grid, Button, TextField, Typography } from '@material-ui/core'
@@ -29,9 +28,9 @@ function Results() {
 
   const Image = () => {
     if (isSubimitted) {
-      return <img src={Happy} className='Happy' alt=' ' />
+      return <ImageHolder image={Happy} alt=' ' />
     } else {
-      return <SadPerson />
+      return <ImageHolder image={Sad} alt=' ' />
     }
   }
 

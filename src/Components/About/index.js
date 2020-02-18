@@ -1,8 +1,5 @@
 import React from 'react'
 
-import 'Assets/Images/Boneco.css'
-import 'Assets/Images/PDV.css'
-
 // * Componentes
 import { Box, Grid, Paper, Typography, Container } from '@material-ui/core'
 

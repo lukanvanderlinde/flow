@@ -1,12 +1,12 @@
 import React from 'react'
 
 import Boneco from 'Assets/Images/Boneco.svg'
-import 'Assets/Images/Boneco.css'
 import PDV from 'Assets/Images/PDV.png'
-import 'Assets/Images/PDV.css'
 
 // * Componentes
 import { Box, Grid, Paper, Button, Container } from '@material-ui/core'
+
+import ImageHolder from 'Components/ImageHolder'
 
 function PropostaValor() {
   return (
@@ -21,23 +21,19 @@ function PropostaValor() {
               alignItems='center'
               spacing={2}>
               <Grid item>
-                <img className='PDV' src={PDV} alt=' ' />
+                <ImageHolder image={PDV} alt=' ' />
               </Grid>
               <Grid item>
                 <Box marginBottom='2rem'>
                   <Button variant='contained' color='primary' href='#search'>
-                    Buscar minha viagem
+                    Ir para a busca
                   </Button>
                 </Box>
               </Grid>
             </Grid>
           </Grid>
           <Grid item sm={6}>
-            <Grid container direction='column' justify='center' spacing={2}>
-              <Grid item>
-                <img className='Boneco' src={Boneco} alt=' ' />
-              </Grid>
-            </Grid>
+            <ImageHolder image={Boneco} alt=' ' />
           </Grid>
         </Grid>
       </Paper>

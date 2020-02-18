@@ -2,8 +2,9 @@ import React from 'react'
 
 import { Grid, Button, Box, Typography } from '@material-ui/core'
 
-import LogoFlow from 'Assets/Components/LogoFlow'
-import OpsPerson from 'Assets/Components/OpsPerson'
+import Ops from 'Assets/Images/Ops.svg'
+import Logo from 'Assets/Images/Logo.svg'
+import ImageHolder from 'Components/ImageHolder'
 
 function LandingPage() {
   return (
@@ -22,7 +23,7 @@ function LandingPage() {
             alignItems='center'
             spacing={2}>
             <Grid item>
-              <OpsPerson />
+              <ImageHolder image={Ops} alt=' ' />
             </Grid>
           </Grid>
         </Grid>
@@ -30,7 +31,7 @@ function LandingPage() {
         <Grid item sm={4}>
           <Grid container direction='column' justify='center' spacing={2}>
             <Grid item>
-              <LogoFlow logoHeight='120px' />
+              <ImageHolder image={Logo} alt='Vai no Flow' />
             </Grid>
             <Grid item>
               <Typography variant='h3'>
