@@ -46,14 +46,6 @@ function Results() {
     }
   }
 
-  const PhoneInput = () => {
-    if (isSubimitted) {
-      return <React.Fragment />
-    } else {
-      return <Grid container spacing={2}></Grid>
-    }
-  }
-
   const Subtitle = () => {
     if (isSubimitted) {
       return <Typography>Vamos te avisar assim que juntar um grupo!</Typography>
