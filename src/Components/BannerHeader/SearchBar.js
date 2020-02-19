@@ -10,6 +10,7 @@ import {
   Button,
   CircularProgress
 } from '@material-ui/core'
+
 import { DatePicker } from '@material-ui/pickers'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 
@@ -120,7 +121,6 @@ function Search() {
         <Grid item xs={6}>
           <DatePicker
             fullWidth
-            // DATEPICKER SER NECESSÁRIO
             format='DD/MM/YYYY'
             label='Ida'
             name='ida'
@@ -144,7 +144,7 @@ function Search() {
             value={returnDate}
             onChange={handleReturnDate}
             animateYearScrolling
-            minDate={startDate}
+            minDate={startDate ? startDate : new Date()}
             minDateMessage={
               'Data de volta não pode ser antes do que a de ida :)'
             }

@@ -8,9 +8,7 @@ import CardViagem from 'Components/CardViagem'
 
 // * CustomComp
 import SearchBar from './SearchBar'
-
-import Logo from 'Assets/Images/Logo.svg'
-import ImageHolder from 'Components/ImageHolder'
+import Header from './Header'
 
 function BannerHeader() {
   const [listaProximasViagens, setListaProximasViagens] = useState(null)
@@ -22,7 +20,7 @@ function BannerHeader() {
       return (
         <Box marginBottom='3rem'>
           <Box marginBottom='1rem'>
-            <Typography variant='h3'>Próximas Viagens</Typography>
+            <Typography variant='h3'>Próximas Viagens Disponíveis:</Typography>
           </Box>
           {viagens}
         </Box>
@@ -66,22 +64,7 @@ function BannerHeader() {
     <Container id='search'>
       <Grid container justify='center' alignItems='center' spacing={4}>
         <Grid item sm={12}>
-          <Grid
-            container
-            direction='column'
-            justify='center'
-            alignItems='center'
-            spacing={2}>
-            <Box paddingTop='40px'>
-              <ImageHolder image={Logo} alt='Vai no Flow' />
-            </Box>
-
-            <Box paddingBottom='20px'>
-              <Typography variant='h3' align='center'>
-                Já imaginou uma viagem até 30% mais rápida?
-              </Typography>
-            </Box>
-          </Grid>
+          <Header />
         </Grid>
 
         <Grid item sm={12}>
