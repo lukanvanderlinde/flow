@@ -17,6 +17,8 @@ import { ThemeProvider } from '@material-ui/styles'
 
 import LandingPage from 'Views/LandingPage'
 import ResultadosBusca from 'Views/ResultadosBusca'
+import Cadastro from 'Views/Cadastro'
+import Sucess from 'Views/Sucess'
 import NotFound from 'Views/NotFound'
 
 const Flow = () => {
@@ -31,6 +33,8 @@ const Flow = () => {
                 path='/resultados/:origem/:destino/:ida'
                 component={ResultadosBusca}
               />
+              <Route exact path='/cadastro' component={Cadastro} />
+              <Route exact path='/sucesso' component={Sucess} />
               <Route exact path='*' component={NotFound} />
             </Switch>
           </Router>
