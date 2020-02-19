@@ -3,26 +3,21 @@ import React from 'react'
 import FirebaseApp from 'Services/FirebaseApp'
 
 // * Componentes
-import {
-  Box,
-  Grid,
-  TextField,
-  Button,
-  CircularProgress
-} from '@material-ui/core'
+import { Redirect } from 'react-router-dom'
+import { Grid, Box, TextField, Button } from '@material-ui/core'
 
 import { DatePicker } from '@material-ui/pickers'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 
-import Results from './Results'
 import Cidades from './Cidades'
 
 function Search() {
-  const [isLoading, setIsLoading] = React.useState(false)
   const [isSearched, setIsSearched] = React.useState(false)
 
   const [startDate, setStartDate] = React.useState(null)
   const [returnDate, setReturnDate] = React.useState(null)
+  const [origem, setOrigem] = React.useState(null)
+  const [destino, setDestino] = React.useState(null)
 
   const handleStartDate = (date) => {
     setStartDate(date)
@@ -33,15 +28,7 @@ function Search() {
 
   const SearchResult = () => {
     if (isSearched) {
-      return <Results />
-    } else {
-      return <React.Fragment />
-    }
-  }
-
-  const LoadSpinner = () => {
-    if (isLoading) {
-      return <CircularProgress />
+      return <Redirect to={`/resultados/${origem}/${destino}/${startDate}`} />
     } else {
       return <React.Fragment />
     }
@@ -59,20 +46,18 @@ function Search() {
       volta: volta.value
     }
 
-    setIsLoading(true)
-    setTimeout(function() {
-      setIsLoading(false)
+    setOrigem(payload.origem)
+    setDestino(payload.destino)
 
-      try {
-        FirebaseApp.database()
-          .ref('search')
-          .push(payload)
-      } catch (error) {
-        alert(error)
-      }
+    try {
+      FirebaseApp.database()
+        .ref('search')
+        .push(payload)
+    } catch (error) {
+      alert(error)
+    }
 
-      setIsSearched(true)
-    }, 2000)
+    setIsSearched(true)
   }
 
   return (
@@ -151,26 +136,16 @@ function Search() {
           />
         </Grid>
       </Grid>
-
-      <Grid container spacing={4}>
-        {/* INPUTS */}
-        <Grid item xs={12}></Grid>
-
-        {/* Buttom */}
+      <Grid container direction='column' justify='center' alignItems='center'>
         <Grid item xs={12}>
-          <Grid container justify='center' alignItems='center' spacing={2}>
+          <Box paddingTop='2rem'>
             <Button variant='contained' color='primary' type='submit'>
               Buscar minha viagem
             </Button>
-          </Grid>
-        </Grid>
-        <Grid container direction='column' justify='center' alignItems='center'>
-          <Box margin='4rem'>
-            <LoadSpinner />
-            <SearchResult />
           </Box>
         </Grid>
       </Grid>
+      <SearchResult />
     </form>
   )
 }

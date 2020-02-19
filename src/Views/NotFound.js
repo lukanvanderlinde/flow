@@ -46,7 +46,7 @@ function LandingPage() {
             </Grid>
             <Grid item>
               <Box marginBottom='2rem' id='about'>
-                <Button variant='contained' color='primary' href='#search'>
+                <Button variant='contained' color='primary' href='/#search'>
                   Buscar minha viagem
                 </Button>
               </Box>

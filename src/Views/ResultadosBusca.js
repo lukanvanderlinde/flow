@@ -5,6 +5,7 @@ import { Box, Container, Typography } from '@material-ui/core'
 
 // * CustomComp
 import NavBar from 'Components/NavBar'
+import CardViagem from 'Components/CardViagem'
 
 function ResultadosBusca({ ...props }) {
   return (
@@ -16,8 +17,8 @@ function ResultadosBusca({ ...props }) {
           {' '}
           🚌
         </span>
-        {props.match.params.origem}
-        {props.match.params.destino}
+        {/* {props.match.params.origem}
+        {props.match.params.destino} */}
       </Typography>
     </Container>
   )
