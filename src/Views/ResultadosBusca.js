@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 // * Componentes
-import { Box, Container, Typography } from '@material-ui/core'
+import { Box, Container, Typography, CircularProgress } from '@material-ui/core'
+
+import FirebaseApp from 'Services/FirebaseApp'
 
 // * CustomComp
 import NavBar from 'Components/NavBar'
@@ -9,34 +11,63 @@ import Results from 'Components/Results'
 import CardViagem from 'Components/CardViagem'
 
 function ResultadosBusca({ ...props }) {
-  const achou = true
-  // try {
-  //   FirebaseApp.database()
-  //     .ref('search')
-  //     .push(payload)
-  // } catch (error) {
-  //   alert(error)
-  // }
+  const [isLoading, setIsLoading] = useState(true)
 
-  console.log(props.match.params.origem)
-  console.log(props.match.params.destino)
-  console.log(props.match.params.ida)
+  const [origem] = useState(props.match.params.origem)
+
+  const [viagensNoBanco, setViagensNoBanco] = useState([])
+  const [matchViagens, setMatchViagens] = useState(false)
+  const viagens = []
+
+  useEffect(() => {
+    try {
+      FirebaseApp.database()
+        .ref('teste')
+        .once('value')
+        .then((snapshot) => {
+          setViagensNoBanco(snapshot.val())
+        })
+    } catch (error) {
+      alert(error)
+    }
+  }, [])
 
   const SearchResult = () => {
-    if (achou) {
-      return (
-        <Typography variant='h2'>
-          Viagens disponíveis
-          <span role='img' aria-label=' '>
-            {' '}
-            🚌
-          </span>
-          {/* {props.match.params.origem}
-        {props.match.params.destino} */}
-        </Typography>
-      )
+    viagensNoBanco.forEach((viagem) => {
+      if (viagem.origem === origem) {
+        setMatchViagens(true)
+        viagens.push(
+          <CardViagem
+            data={viagem.data}
+            origem={viagem.origem}
+            destino={viagem.destino}
+            preco={viagem.preco}
+            tempo={viagem.tempo}
+          />
+        )
+      }
+      setIsLoading(false)
+    })
+
+    if (isLoading) {
+      return <CircularProgress />
     } else {
-      return <Results />
+      if (matchViagens) {
+        return (
+          <Box>
+            <Typography variant='h2'>
+              Viagens disponíveis
+              <span role='img' aria-label=' '>
+                {' '}
+                🚌
+              </span>
+            </Typography>
+            {viagens}
+          </Box>
+        )
+      } else {
+        return <Results />
+      }
     }
   }
 

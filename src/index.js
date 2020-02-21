@@ -30,10 +30,14 @@ const Flow = () => {
             <Switch>
               <Route exact path='/' component={LandingPage} />
               <Route
-                path='/resultados/:origem/:destino/:ida'
+                path='/resultados/:origem/:destino'
                 component={ResultadosBusca}
               />
-              <Route exact path='/cadastro' component={Cadastro} />
+              <Route
+                exact
+                path='/cadastro/:origem/:destino/:data/:preco/:tempo'
+                component={Cadastro}
+              />
               <Route exact path='/sucesso' component={Sucess} />
               <Route exact path='*' component={NotFound} />
             </Switch>

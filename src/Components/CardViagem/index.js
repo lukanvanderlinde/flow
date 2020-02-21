@@ -75,7 +75,11 @@ function CardViagem({ data, origem, destino, preco, tempo }) {
             </Typography>
           </Grid>
           <Grid item>
-            <Button variant='contained' color='primary' size='small'>
+            <Button
+              variant='contained'
+              color='primary'
+              size='small'
+              href={`/cadastro/${origem}/${destino}/${data}/${preco}/${tempo}`}>
               Reservar
             </Button>
           </Grid>

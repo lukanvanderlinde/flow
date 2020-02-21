@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import FirebaseApp from 'Services/FirebaseApp'
 
@@ -14,21 +14,14 @@ import Cidades from './Cidades'
 function Search() {
   const [isSearched, setIsSearched] = React.useState(false)
 
-  const [startDate, setStartDate] = React.useState(null)
-  const [returnDate, setReturnDate] = React.useState(null)
-  const [origem, setOrigem] = React.useState(null)
-  const [destino, setDestino] = React.useState(null)
-
-  const handleStartDate = (date) => {
-    setStartDate(date)
-  }
-  const handleReturnDate = (date) => {
-    setReturnDate(date)
-  }
+  const [startDate, setStartDate] = useState(null)
+  const [returnDate, setReturnDate] = useState(null)
+  const [origem, setOrigem] = useState(null)
+  const [destino, setDestino] = useState(null)
 
   const SearchResult = () => {
     if (isSearched) {
-      return <Redirect to={`/resultados/${origem}/${destino}/${startDate}`} />
+      return <Redirect push to={`/resultados/${origem}/${destino}}`} />
     } else {
       return <React.Fragment />
     }
@@ -112,7 +105,7 @@ function Search() {
             id='ida'
             inputVariant='outlined'
             value={startDate}
-            onChange={handleStartDate}
+            onChange={(date) => setStartDate(date)}
             animateYearScrolling
             minDate={new Date()}
           />
@@ -127,7 +120,7 @@ function Search() {
             id='volta'
             inputVariant='outlined'
             value={returnDate}
-            onChange={handleReturnDate}
+            onChange={(date) => setReturnDate(date)}
             animateYearScrolling
             minDate={startDate ? startDate : new Date()}
             minDateMessage={
