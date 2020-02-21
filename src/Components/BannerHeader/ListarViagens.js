@@ -6,7 +6,7 @@ import { Box, Typography } from '@material-ui/core'
 import FirebaseApp from 'Services/FirebaseApp'
 import CardViagem from 'Components/CardViagem'
 
-function BannerHeader() {
+function ListarViagens() {
   const [listaProximasViagens, setListaProximasViagens] = useState(null)
 
   const viagens = []
@@ -39,9 +39,7 @@ function BannerHeader() {
         </Box>
       )
     })
-  }
 
-  if (listaProximasViagens) {
     return (
       <Box marginBottom='3rem'>
         <Box marginBottom='1rem'>
@@ -55,4 +53,4 @@ function BannerHeader() {
   }
 }
 
-export default BannerHeader
+export default ListarViagens

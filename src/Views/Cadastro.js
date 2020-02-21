@@ -273,7 +273,7 @@ function Cadastro({ ...props }) {
             <KeyboardDatePicker
               fullWidth
               format='MM/YYYY'
-              label='Data de validade do cartão'
+              label='Data de validade'
               name='cardExpiryPicker'
               id='cardExpiryPicker'
               inputVariant='outlined'

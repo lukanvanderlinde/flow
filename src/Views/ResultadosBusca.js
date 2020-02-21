@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 // * Componentes
-import { Box, Container, Typography, CircularProgress } from '@material-ui/core'
+import {
+  Box,
+  Grid,
+  Container,
+  Typography,
+  CircularProgress
+} from '@material-ui/core'
 
 import FirebaseApp from 'Services/FirebaseApp'
 
@@ -10,6 +16,9 @@ import NavBar from 'Components/NavBar'
 import Results from 'Components/Results'
 import CardViagem from 'Components/CardViagem'
 
+import Happy from 'Assets/Images/Happy.svg'
+import ImageHolder from 'Components/ImageHolder'
+
 function ResultadosBusca({ ...props }) {
   const [isLoading, setIsLoading] = useState(true)
 
@@ -17,7 +26,6 @@ function ResultadosBusca({ ...props }) {
 
   const [viagensNoBanco, setViagensNoBanco] = useState([])
   const [matchViagens, setMatchViagens] = useState(false)
-  const viagens = []
 
   useEffect(() => {
     try {
@@ -32,6 +40,7 @@ function ResultadosBusca({ ...props }) {
     }
   }, [])
 
+  const viagens = []
   const SearchResult = () => {
     viagensNoBanco.forEach((viagem) => {
       if (viagem.origem === origem) {
@@ -50,20 +59,31 @@ function ResultadosBusca({ ...props }) {
     })
 
     if (isLoading) {
-      return <CircularProgress />
+      return (
+        <Grid container direction='column' justify='center' alignItems='center'>
+          <Box marginTop='3rem'>
+            <CircularProgress />
+          </Box>
+        </Grid>
+      )
     } else {
       if (matchViagens) {
         return (
-          <Box>
-            <Typography variant='h2'>
-              Viagens disponíveis
-              <span role='img' aria-label=' '>
-                {' '}
-                🚌
-              </span>
-            </Typography>
-            {viagens}
-          </Box>
+          <Container maxWidth='md'>
+            <Box marginTop='1rem'>
+              <Typography variant='h2'>
+                Viagens disponíveis
+                <span role='img' aria-label=' '>
+                  {' '}
+                  🚌
+                </span>
+              </Typography>
+            </Box>
+            <Box marginTop='1rem'>{viagens}</Box>
+            <Box marginTop='2rem'>
+              <ImageHolder image={Happy} alt=' ' />
+            </Box>
+          </Container>
         )
       } else {
         return <Results />
