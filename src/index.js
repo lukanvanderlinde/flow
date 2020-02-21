@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import * as ServiceWorker from 'Services/ServiceWorker'
 
+import { hotjar } from 'react-hotjar'
+
 // * Auth
 import { AuthProvider } from 'Services/Auth'
 
@@ -22,6 +24,8 @@ import Sucess from 'Views/Sucess'
 import NotFound from 'Views/NotFound'
 
 const Flow = () => {
+  hotjar.initialize(1685495, 6)
+
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <ThemeProvider theme={Theme}>
