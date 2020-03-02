@@ -14,7 +14,7 @@ function ListarViagens() {
   useEffect(() => {
     try {
       FirebaseApp.database()
-        .ref('teste')
+        .ref('viagens')
         .once('value')
         .then(function(snapshot) {
           console.log(snapshot.val())

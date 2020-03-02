@@ -30,7 +30,7 @@ function ResultadosBusca({ ...props }) {
   useEffect(() => {
     try {
       FirebaseApp.database()
-        .ref('teste')
+        .ref('viagens')
         .once('value')
         .then((snapshot) => {
           setViagensNoBanco(snapshot.val())
