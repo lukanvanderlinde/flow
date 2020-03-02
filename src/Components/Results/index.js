@@ -10,16 +10,16 @@ import ImageHolder from 'Components/ImageHolder'
 import { Grid, Button, TextField, Typography } from '@material-ui/core'
 
 function Results() {
-  const [userPhone, setUserPhone] = React.useState(false)
+  const [userEmail, setUserEmail] = React.useState(false)
   const [isSubimitted, setIsSubimitted] = React.useState(false)
 
   const handleAvisa = () => {
     setIsSubimitted(true)
     try {
       FirebaseApp.database()
-        .ref('users/' + userPhone)
-        .set({
-          phone: userPhone.toString()
+        .ref('users')
+        .push({
+          email: userEmail.toString()
         })
     } catch (error) {
       alert(error)
@@ -80,13 +80,13 @@ function Results() {
 
             <Grid item sm={12}>
               <TextField
-                label='Telefone'
-                placeholder='(DDD) 9 0000-0000'
-                type='search'
+                label='Email'
+                placeholder='seunome@dominio.com'
+                type='email'
                 variant='outlined'
                 fullWidth
                 onChange={(event) => {
-                  setUserPhone(event.target.value)
+                  setUserEmail(event.target.value)
                 }}
               />
             </Grid>
