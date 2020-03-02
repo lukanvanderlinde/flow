@@ -6,7 +6,6 @@
 .pnp.js
 .firebaserc
 .firebase
-.docz
 
 # testing
 /coverage
