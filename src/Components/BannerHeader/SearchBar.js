@@ -32,7 +32,10 @@ function Search() {
 
     const { origem, destino, ida, volta } = event.target.elements
 
+    const buscado = new Date().toString()
+
     const payload = {
+      buscado,
       origem: origem.value,
       destino: destino.value,
       ide: ida.value,
