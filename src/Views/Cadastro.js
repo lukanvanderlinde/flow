@@ -18,6 +18,8 @@ import CalendarToday from '@material-ui/icons/CalendarToday'
 import Schedule from '@material-ui/icons/Schedule'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 
+import FirebaseApp from 'Services/FirebaseApp'
+
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { Redirect } from 'react-router-dom'
 
@@ -52,12 +54,52 @@ function Cadastro({ ...props }) {
   const [cardExpiry, setCardExpiry] = useState(null)
   const [nascimento, setNascimento] = useState(null)
 
-  // const [cardNumber, setCardNumber] = useState(null)
-
-  // const [cvc, setCvc] = useState(null)
-
   const handleSubmit = (event) => {
     event.preventDefault()
+
+    const {
+      nome,
+      surname,
+      rg,
+      celular,
+      mail,
+      cardName,
+      cardNumber,
+      cardCvc
+    } = event.target.elements
+
+    let DataNascimento = 'nao preencheu'
+    let VencimentoCartao = 'nao preencheu'
+
+    if (nascimento) {
+      DataNascimento = nascimento.toString()
+    }
+    if (cardExpiry) {
+      VencimentoCartao = cardExpiry.toString()
+    }
+
+    const payload = {
+      nome: nome.value,
+      surname: surname.value,
+      rg: rg.value,
+      nascimento: DataNascimento,
+      celular: celular.value,
+      mail: mail.value,
+      cardName: cardName.value,
+      cardNumber: cardNumber.value,
+      cardCvc: cardCvc.value,
+      origem: props.match.params.origem,
+      destino: props.match.params.destino,
+      cardExpiry: VencimentoCartao
+    }
+
+    try {
+      FirebaseApp.database()
+        .ref('vendas')
+        .push(payload)
+    } catch (error) {
+      alert(error)
+    }
 
     setIsSearched(true)
   }

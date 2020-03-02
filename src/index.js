@@ -9,7 +9,7 @@ import { hotjar } from 'react-hotjar'
 // * Auth
 import { AuthProvider } from 'Services/Auth'
 
-// * Time
+// * DateTime
 import MomentUtils from '@date-io/moment'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 
@@ -17,10 +17,12 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import Theme from 'Services/Theme'
 import { ThemeProvider } from '@material-ui/styles'
 
+// * Routes
 import LandingPage from 'Views/LandingPage'
 import ResultadosBusca from 'Views/ResultadosBusca'
 import Cadastro from 'Views/Cadastro'
 import Sucess from 'Views/Sucess'
+import Cardapio from 'Views/Cardapio'
 import NotFound from 'Views/NotFound'
 
 const Flow = () => {
@@ -43,6 +45,7 @@ const Flow = () => {
                 component={Cadastro}
               />
               <Route exact path='/sucesso' component={Sucess} />
+              <Route exact path='/cardapio' component={Cardapio} />
               <Route exact path='*' component={NotFound} />
             </Switch>
           </Router>

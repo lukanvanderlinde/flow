@@ -15,7 +15,7 @@ function Sucess() {
   }
 
   return (
-    <Container maxWidth='xl'>
+    <Container maxWidth='md'>
       <Box textAlign='center' marginTop='2rem'>
         <Typography variant='h2'>
           Uhull! Tudo certo com a sua viagem!
