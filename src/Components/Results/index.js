@@ -17,7 +17,7 @@ function Results() {
     setIsSubimitted(true)
     try {
       FirebaseApp.database()
-        .ref('users')
+        .ref('leads')
         .push({
           email: userEmail.toString()
         })
