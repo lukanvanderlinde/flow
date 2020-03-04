@@ -46,13 +46,15 @@ function ResultadosBusca({ ...props }) {
       if (viagem.origem === origem) {
         setMatchViagens(true)
         viagens.push(
-          <CardViagem
-            data={viagem.data}
-            origem={viagem.origem}
-            destino={viagem.destino}
-            preco={viagem.preco}
-            tempo={viagem.tempo}
-          />
+          <Box marginBottom='1rem'>
+            <CardViagem
+              data={viagem.data}
+              origem={viagem.origem}
+              destino={viagem.destino}
+              preco={viagem.preco}
+              tempo={viagem.tempo}
+            />
+          </Box>
         )
       }
       setIsLoading(false)

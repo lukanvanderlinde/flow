@@ -26,19 +26,19 @@ function ListarViagens() {
   }, [])
 
   if (listaProximasViagens) {
-    listaProximasViagens.forEach((viagem) => {
+    for (let i = 0; i < 4; i++) {
       viagens.push(
         <Box marginBottom='1rem' marginTop='1rem'>
           <CardViagem
-            data={viagem.data}
-            origem={viagem.origem}
-            destino={viagem.destino}
-            preco={viagem.preco}
-            tempo={viagem.tempo}
+            data={listaProximasViagens[i].data}
+            origem={listaProximasViagens[i].origem}
+            destino={listaProximasViagens[i].destino}
+            preco={listaProximasViagens[i].preco}
+            tempo={listaProximasViagens[i].tempo}
           />
         </Box>
       )
-    })
+    }
 
     return (
       <Box marginBottom='3rem'>
