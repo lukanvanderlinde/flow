@@ -38,7 +38,7 @@ function Search() {
       buscado,
       origem: origem.value,
       destino: destino.value,
-      ide: ida.value,
+      ida: ida.value,
       volta: volta.value
     }
 
