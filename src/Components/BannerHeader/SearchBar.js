@@ -46,8 +46,11 @@ function Search() {
     setDestino(payload.destino)
 
     try {
+      const searchDate = `${new Date().getDay()}-${new Date().getMonth() +
+        1}-${new Date().getFullYear()}`
+
       FirebaseApp.database()
-        .ref('search')
+        .ref('buscas/' + searchDate)
         .push(payload)
     } catch (error) {
       alert(error)
