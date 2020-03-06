@@ -23,6 +23,7 @@ import ResultadosBusca from 'Views/ResultadosBusca'
 import Cadastro from 'Views/Cadastro'
 import Sucess from 'Views/Sucess'
 import Cardapio from 'Views/Cardapio'
+import Checkout from 'Views/Checkout'
 import NotFound from 'Views/NotFound'
 
 const Flow = () => {
@@ -46,6 +47,7 @@ const Flow = () => {
               />
               <Route exact path='/sucesso' component={Sucess} />
               <Route exact path='/cardapio' component={Cardapio} />
+              <Route exact path='/obrigado' component={Checkout} />
               <Route exact path='*' component={NotFound} />
             </Switch>
           </Router>

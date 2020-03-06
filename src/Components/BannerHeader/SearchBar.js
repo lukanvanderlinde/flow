@@ -46,7 +46,7 @@ function Search() {
     setDestino(payload.destino)
 
     try {
-      const searchDate = `${new Date().getDay()}-${new Date().getMonth() +
+      const searchDate = `${new Date().getDay() + 1}-${new Date().getMonth() +
         1}-${new Date().getFullYear()}`
 
       FirebaseApp.database()

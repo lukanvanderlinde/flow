@@ -74,6 +74,22 @@ const Theme = createMuiTheme({
       // textTransform: 'uppercase',
       src: `url(${LatoRegular}) format('ttf')`
     },
+    subtitle1: {
+      fontFamily: [
+        'Montserrat-Black',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"'
+      ],
+      color: '#222222',
+      fontSize: '1.2rem',
+      src: `url(${MontserratBlack}) format('ttf')`
+    },
+    subtitle2: {
+      fontSize: '1.2rem'
+    },
     body1: {
       fontFamily: [
         'Lato-Regular',
