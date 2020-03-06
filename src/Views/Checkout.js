@@ -5,7 +5,7 @@ import Lottie from 'react-lottie'
 import LottieSucess from 'Assets/Animation/LottieSucess.json'
 
 // * Componentes
-import { Container, Paper, Box, Typography } from '@material-ui/core'
+import { Container, Box, Typography } from '@material-ui/core'
 
 function Sucess() {
   const defaultOptions = {

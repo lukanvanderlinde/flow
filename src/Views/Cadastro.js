@@ -341,6 +341,18 @@ function Cadastro({ ...props }) {
               required
             />
           </Grid>
+
+          <Grid item xs={6}>
+            <TextField
+              label='Código promocional'
+              name='referal'
+              id='referal'
+              type='text'
+              placeholder='Você tem um código de promocional?'
+              variant='outlined'
+              fullWidth
+            />
+          </Grid>
         </Grid>
         <Grid container direction='column' justify='center' alignItems='center'>
           <Grid item xs={12}>
