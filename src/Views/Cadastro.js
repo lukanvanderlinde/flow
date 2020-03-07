@@ -82,19 +82,27 @@ function Cadastro({ ...props }) {
     }
 
     const payload = {
-      nome: nome.value,
-      surname: surname.value,
-      rg: rg.value,
-      nascimento: DataNascimento,
-      celular: celular.value,
-      mail: mail.value,
-      cardName: cardName.value,
-      cardNumber: cardNumber.value,
-      cardCvc: cardCvc.value,
-      origem: props.match.params.origem,
-      destino: props.match.params.destino,
-      cardExpiry: VencimentoCartao,
-      referal: referal.value
+      viagem: {
+        origem: props.match.params.origem,
+        destino: props.match.params.destino,
+        data: props.match.params.data
+      },
+      cliente: {
+        nome: nome.value,
+        surname: surname.value,
+        rg: rg.value,
+        nascimento: DataNascimento,
+        celular: celular.value,
+        mail: mail.value
+      },
+      compra: {
+        data: new Date(),
+        cardName: cardName.value,
+        cardNumber: cardNumber.value,
+        cardCvc: cardCvc.value,
+        cardExpiry: VencimentoCartao,
+        referal: referal.value
+      }
     }
 
     try {
