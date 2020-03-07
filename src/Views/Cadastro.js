@@ -71,6 +71,7 @@ function Cadastro({ ...props }) {
 
     let DataNascimento = 'nao preencheu'
     let VencimentoCartao = 'nao preencheu'
+    let dataCompra = new Date().toString()
 
     if (nascimento) {
       DataNascimento = nascimento.toString()
@@ -96,7 +97,7 @@ function Cadastro({ ...props }) {
         mail: mail.value
       },
       compra: {
-        data: new Date(),
+        data: dataCompra,
         cardName: cardName.value,
         cardNumber: cardNumber.value,
         cardCvc: cardCvc.value,
