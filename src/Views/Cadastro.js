@@ -76,7 +76,9 @@ function Cadastro({ ...props }) {
       DataNascimento = nascimento.toString()
     }
     if (cardExpiry) {
-      VencimentoCartao = cardExpiry.toString()
+      const temp = new Date(cardExpiry)
+
+      VencimentoCartao = `${temp.getMonth() + 1}/${temp.getFullYear()}`
     }
 
     const payload = {
