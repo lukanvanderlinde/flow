@@ -65,7 +65,8 @@ function Cadastro({ ...props }) {
       mail,
       cardName,
       cardNumber,
-      cardCvc
+      cardCvc,
+      referal
     } = event.target.elements
 
     let DataNascimento = 'nao preencheu'
@@ -90,7 +91,8 @@ function Cadastro({ ...props }) {
       cardCvc: cardCvc.value,
       origem: props.match.params.origem,
       destino: props.match.params.destino,
-      cardExpiry: VencimentoCartao
+      cardExpiry: VencimentoCartao,
+      referal: referal.value
     }
 
     try {

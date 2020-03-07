@@ -27,17 +27,19 @@ function ListarViagens() {
 
   if (listaProximasViagens) {
     for (let i = 0; i < 4; i++) {
-      viagens.push(
-        <Box marginBottom='1rem' marginTop='1rem'>
-          <CardViagem
-            data={listaProximasViagens[i].data}
-            origem={listaProximasViagens[i].origem}
-            destino={listaProximasViagens[i].destino}
-            preco={listaProximasViagens[i].preco}
-            tempo={listaProximasViagens[i].tempo}
-          />
-        </Box>
-      )
+      if (listaProximasViagens[i]) {
+        viagens.push(
+          <Box marginBottom='1rem' marginTop='1rem'>
+            <CardViagem
+              data={listaProximasViagens[i].data}
+              origem={listaProximasViagens[i].origem}
+              destino={listaProximasViagens[i].destino}
+              preco={listaProximasViagens[i].preco}
+              tempo={listaProximasViagens[i].tempo}
+            />
+          </Box>
+        )
+      }
     }
 
     return (
