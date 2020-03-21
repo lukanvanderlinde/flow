@@ -45,14 +45,16 @@ const Login = ({ history }) => {
     async (event) => {
       event.preventDefault()
       const { email, password } = event.target.elements
+
       try {
         await FirebaseApp.auth().signInWithEmailAndPassword(
           email.value,
           password.value
         )
-        history.push('/home')
       } catch (error) {
         alert(error)
+      } finally {
+        history.push('/')
       }
     },
     [history]

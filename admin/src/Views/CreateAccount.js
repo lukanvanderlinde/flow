@@ -42,12 +42,12 @@ const CreateAccount = ({ history }) => {
     async (userCredencials, userData) => {
       try {
         FirebaseApp.database()
-          .ref(`users/${userCredencials.user.uid}`)
+          .ref(`usuarios/${userCredencials.user.uid}`)
           .set(userData)
       } catch (error) {
         alert(error)
       } finally {
-        history.push('/home')
+        history.push('/')
       }
     },
     [history]
@@ -56,17 +56,20 @@ const CreateAccount = ({ history }) => {
   const handleCreateAccount = async (event) => {
     event.preventDefault()
 
-    const { email, password, name, surname } = event.target.elements
+    const { email, password, name } = event.target.elements
 
     try {
       await FirebaseApp.auth()
         .createUserWithEmailAndPassword(email.value, password.value)
         .then((userCredentials) => {
           handleDataBase(userCredentials, {
-            information: {
-              name: name.value,
-              surname: surname.value,
+            info: {
+              nome: name.value,
               email: email.value
+            },
+            roles: {
+              admin: true,
+              viajante: true
             }
           })
         })
@@ -98,17 +101,6 @@ const CreateAccount = ({ history }) => {
                 label='Name'
                 type='name'
                 id='name'
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                required
-                fullWidth
-                name='surname'
-                label='Surname'
-                type='surname'
-                id='surname'
               />
             </Grid>
             <Grid item xs={12}>

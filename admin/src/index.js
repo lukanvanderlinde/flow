@@ -4,27 +4,36 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import * as serviceWorker from './Services/ServiceWorker'
 
+import Theme from 'Services/Theme'
+import { ThemeProvider } from '@material-ui/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+
 // * Auth
 import { AuthProvider } from 'Services/Auth'
 import PrivateRoute from 'Components/PrivateRoute'
 
 import Home from 'Views/Home'
-import CreateAccount from 'Views/CreateAccount'
+// import CreateAccount from 'Views/CreateAccount'
 import Login from 'Views/Login'
 import NotFound from 'Views/NotFound'
 
 const Admin = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <PrivateRoute exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/create-account' component={CreateAccount} />
-          <Route exact path='*' component={NotFound} />
-        </Switch>
-      </Router>
-    </AuthProvider>
+    <>
+      <CssBaseline />
+      <ThemeProvider theme={Theme}>
+        <AuthProvider>
+          <Router>
+            <Switch>
+              <PrivateRoute exact path='/' component={Home} />
+              <Route exact path='/login' component={Login} />
+              {/* <Route exact path='/create-account' component={CreateAccount} /> */}
+              <Route exact path='*' component={NotFound} />
+            </Switch>
+          </Router>
+        </AuthProvider>
+      </ThemeProvider>
+    </>
   )
 }
 
